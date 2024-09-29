@@ -1,19 +1,14 @@
-# 🎈 Blank app template
+FraudGuard
+FraudGuard is an AI-powered fraud detection system designed to help financial institutions prevent fraudulent transactions. Leveraging advanced machine learning algorithms and data analysis, FraudGuard identifies anomalies in transaction data, flagging potential fraud in real-time.
 
-A simple Streamlit app template for you to modify!
+Features
+Detects fraudulent transactions using machine learning.
+Supports multiple models: Logistic Regression, Decision Trees, and MLP (Multi-Layer Perceptron).
+Provides insights from advanced exploratory data analysis (EDA).
+Technologies Used
+Python
+Machine Learning Libraries: Scikit-learn, Pandas, NumPy
+Data Visualization: Matplotlib, Seaborn
+Streamlit for interactive UI
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
-
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+You can run the project by cloning this repo or by Checking Google Colab: https://colab.research.google.com/drive/1sWwPuidOy2Yz8qZVA5LGcJeCKvGMZ6jJ?usp=sharing
