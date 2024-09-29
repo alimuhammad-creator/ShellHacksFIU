@@ -18,6 +18,7 @@ def plot_transaction_type(df):
     plt.xlabel('Type', fontsize=18, color='#000000')
     plt.ylabel('Count', fontsize=18, color='#000000')
     plt.tight_layout()
+    plt.savefig("transaction_type.png")
     plt.show()
 
 def plot_transaction_amount(df):
@@ -30,6 +31,7 @@ def plot_transaction_amount(df):
     plt.xlabel('Amount', fontsize=16, color='#000000')
     plt.ylabel('Count', fontsize=16, color='#000000')
     plt.tight_layout()
+    plt.savefig("transaction_amount.png")
     plt.show()
 
 def plot_transaction_pie_chart(df):
@@ -41,6 +43,7 @@ def plot_transaction_pie_chart(df):
             explode=(0.1, 0, 0, 0, 0), textprops={'fontsize': 15})
     plt.title('Count of each type of transaction', fontweight='bold', fontsize=18, fontfamily='times new roman')
     plt.tight_layout()
+    plt.savefig("transaction_pie_chart.png") 
     plt.show()
 
 def plot_correlation_matrix(df):
@@ -53,6 +56,7 @@ def plot_correlation_matrix(df):
     plt.title('Pearson Correlation Matrix', fontsize=16)
     plt.xticks(rotation=45)
     plt.tight_layout()
+    plt.savefig("correlation_matrix.png") 
     plt.show()
 
 def generate_all_plots():
