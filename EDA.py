@@ -87,6 +87,25 @@ def plot_top_5_users_most_transactions(df):
     plt.savefig("top_5_users_most_transactions.png")
     plt.show()
 
+
+def display_top_20_fraudulent_transactions(df):
+    # Check if the 'isFraud' column exists
+    if 'isFraud' not in df.columns:
+        print("No 'isFraud' column found in the dataset.")
+        return
+    
+    # Filter fraudulent transactions
+    fraudulent_df = df[df['isFraud'] == 1]
+    
+    # Get the top 20 fraudulent transactions by amount
+    top_20_fraudulent = fraudulent_df.nlargest(20, 'amount')
+    
+    # Display the result as a table
+    print("Top 20 Fraudulent Transactions:")
+    print(top_20_fraudulent[['nameOrig', 'amount', 'type']])
+    
+    return top_20_fraudulent[['nameOrig', 'amount', 'type']]    
+
 def generate_all_plots():
     df = load_and_preprocess_data()
     plot_transaction_type(df)
