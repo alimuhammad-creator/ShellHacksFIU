@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from model import preprocess_data, train_model, evaluate_model, predict_new_data, load_and_train_model
-from EDA import perform_eda  
+from EDA import generate_all_plots
 
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 
