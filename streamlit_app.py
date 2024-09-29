@@ -17,6 +17,9 @@ if st.sidebar.button('Get Insights'):
     generate_all_plots()  # Run EDA function
 
     # EDA graphs
+    
+    st.image('top_5_users_biggest_transactions.png', caption='Top 5 Customers with Biggest Transactions')
+    st.image('top_5_users_most_transactions.png', caption='Top 5 Users with most Transactions')
     st.image('transaction_type.png', caption='Transaction Type Distribution')
     st.image('transaction_amount.png', caption='Top Transaction Amounts')
     st.image('transaction_pie_chart.png', caption='Pie Chart')
