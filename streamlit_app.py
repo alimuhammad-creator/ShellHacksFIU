@@ -1,9 +1,8 @@
 # streamlit_app.py
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 from model import preprocess_data, train_model, evaluate_model, predict_new_data, load_and_train_model
-from EDA import generate_all_plots
+from EDA import generate_all_plots, display_top_20_fraudulent_transactions, load_and_preprocess_data  
 
 st.set_page_config(page_title="Fraud Detection Dashboard", layout="wide")
 
@@ -14,18 +13,24 @@ uploaded_file = st.sidebar.file_uploader("Choose a file", type=["csv"])
 # Button to get insights
 if st.sidebar.button('Get Insights'):
     st.write("### Getting Insights from Transactions....")
-    generate_all_plots()  # Run EDA function
+    generate_all_plots() 
 
     # EDA graphs
-    
-    st.image('top_5_users_biggest_transactions.png', caption='Top 5 Customers with Biggest Transactions')
-    st.image('top_5_users_most_transactions.png', caption='Top 5 Users with most Transactions')
     st.image('transaction_type.png', caption='Transaction Type Distribution')
     st.image('transaction_amount.png', caption='Top Transaction Amounts')
-    st.image('transaction_pie_chart.png', caption='Pie Chart')
+    st.image('transaction_pie_chart.png', caption='Count of Each Type of Transaction')
     st.image('correlation_matrix.png', caption='Pearson Correlation Matrix')
+    st.image('top_5_users_biggest_transactions.png', caption='Top 5 Users with Biggest Transactions')
+    st.image('top_5_users_most_transactions.png', caption='Top 5 Users with Most Transactions')
 
-# Load and process dataset
+# New button to view top 20 fraudulent transactions
+if st.sidebar.button('View Fraudulent Transactions'):
+    st.write("### Top 20 Fraudulent Transactions")
+    df = load_and_preprocess_data()  # Load the dataset
+    top_20_fraudulent = display_top_20_fraudulent_transactions(df)  # Get top 20 fraudulent transactions
+    st.dataframe(top_20_fraudulent)  # Display the table
+
+# Load and process dataset for prediction
 if uploaded_file is not None:
     # Load and train model on the original dataset
     model, le, scaler = load_and_train_model("Transactional_dataset.csv", "Decision Tree")
@@ -40,7 +45,7 @@ if uploaded_file is not None:
         predictions = predict_new_data(model, custom_df, le, scaler)
         custom_df['Predicted_Fraud'] = predictions
         
-        # Display fraudulent transactions
+        # Display only fraudulent transactions
         fraudulent_transactions = custom_df[custom_df['Predicted_Fraud'] == 1]
         st.write("### Fraudulent Transactions")
         st.dataframe(fraudulent_transactions[['type', 'amount', 'Predicted_Fraud']])
