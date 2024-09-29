@@ -14,7 +14,7 @@ uploaded_file = st.sidebar.file_uploader("Choose a file", type=["csv"])
 # Button to get insights
 if st.sidebar.button('Get Insights'):
     st.write("### Exploratory Data Analysis")
-    perform_eda()  # Run EDA function
+    generate_all_plots()  # Run EDA function
 
     # EDA graphs
     st.image('transaction_type.png', caption='Transaction Type Distribution')
@@ -37,7 +37,7 @@ if uploaded_file is not None:
         predictions = predict_new_data(model, custom_df, le, scaler)
         custom_df['Predicted_Fraud'] = predictions
         
-        # Display only fraudulent transactions
+        # Display fraudulent transactions
         fraudulent_transactions = custom_df[custom_df['Predicted_Fraud'] == 1]
         st.write("### Fraudulent Transactions")
         st.dataframe(fraudulent_transactions[['type', 'amount', 'Predicted_Fraud']])
