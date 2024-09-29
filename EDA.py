@@ -41,7 +41,7 @@ def plot_transaction_pie_chart(df):
     plt.figure(figsize=(6, 6))
     plt.pie(counts, labels=counts.index, autopct="%1.1f%%", colors=colors, shadow=True,
             explode=(0.1, 0, 0, 0, 0), textprops={'fontsize': 15})
-    plt.title('Count of each type of transaction', fontweight='bold', fontsize=18, fontfamily='times new roman')
+    plt.title('Count of each type of transaction', fontweight='bold', fontsize=18)
     plt.tight_layout()
     plt.savefig("transaction_pie_chart.png") 
     plt.show()
@@ -59,9 +59,39 @@ def plot_correlation_matrix(df):
     plt.savefig("correlation_matrix.png") 
     plt.show()
 
+def plot_top_5_users_biggest_transactions(df):
+    # Group by user and get the largest transactions for each user
+    top_5_users = df.groupby('nameOrig')['amount'].max().nlargest(5)
+    
+    plt.figure(figsize=(10, 5))
+    top_5_users.plot(kind='bar', color='#808080')
+    plt.title("Top 5 Users with Biggest Transactions", fontsize=20, color="#000000")
+    plt.xticks(rotation=45, fontsize=12, color='#000000')
+    plt.xlabel('User', fontsize=16, color='#000000')
+    plt.ylabel('Transaction Amount', fontsize=16, color='#000000')
+    plt.tight_layout()
+    plt.savefig("top_5_users_biggest_transactions.png")
+    plt.show()
+
+def plot_top_5_users_most_transactions(df):
+    # Count the number of transactions per user and find the top 5
+    top_5_users_transactions = df['nameOrig'].value_counts().nlargest(5)
+    
+    plt.figure(figsize=(10, 5))
+    top_5_users_transactions.plot(kind='bar', color='#808080')
+    plt.title("Top 5 Users with Most Transactions", fontsize=20, color="#000000")
+    plt.xticks(rotation=45, fontsize=12, color='#000000')
+    plt.xlabel('User', fontsize=16, color='#000000')
+    plt.ylabel('Number of Transactions', fontsize=16, color='#000000')
+    plt.tight_layout()
+    plt.savefig("top_5_users_most_transactions.png")
+    plt.show()
+
 def generate_all_plots():
     df = load_and_preprocess_data()
     plot_transaction_type(df)
     plot_transaction_amount(df)
     plot_transaction_pie_chart(df)
     plot_correlation_matrix(df)
+    plot_top_5_users_biggest_transactions(df)
+    plot_top_5_users_most_transactions(df)
