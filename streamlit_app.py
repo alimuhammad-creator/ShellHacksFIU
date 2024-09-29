@@ -13,13 +13,13 @@ uploaded_file = st.sidebar.file_uploader("Choose a file", type=["csv"])
 
 # Button to get insights
 if st.sidebar.button('Get Insights'):
-    st.write("### Exploratory Data Analysis")
+    st.write("### Getting Insights from Transactions....")
     generate_all_plots()  # Run EDA function
 
     # EDA graphs
     st.image('transaction_type.png', caption='Transaction Type Distribution')
     st.image('transaction_amount.png', caption='Top Transaction Amounts')
-    st.image('transaction_type_distribution.png', caption='Count of Each Type of Transaction')
+    st.image('transaction_pie_chart.png', caption='Pie Chart')
     st.image('correlation_matrix.png', caption='Pearson Correlation Matrix')
 
 # Load and process dataset
